@@ -3,7 +3,7 @@ import java.util.function.Predicate;
 public class PickShareImperative {
     final Predicate<ShareInfo> isPriceLessThan500 = ShareUtil.isPriceLessThan(500);
 
-    public void findHighPriced() {
+    public static void findHighPriced() {
         ShareInfo highPriced = null;
         for (String symbol : Shares.symbols) {
             ShareInfo shareInfo = ShareUtil.getPrice(symbol);
