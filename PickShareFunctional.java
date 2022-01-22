@@ -5,9 +5,11 @@ public class PickShareFunctional {
 
     public static void findHighPriced(Stream<String> symbolStream) {
         // TODO: Also implement functional-style exception handling.
-        symbolStream
+        ShareInfo highest = symbolStream
             .map(symbol -> ShareUtil.getPrice(symbol))
             .filter(ShareUtil.isPriceLessThan(PRICE_LIMIT))
-            .reduce((share1, share2) -> ShareUtil.pickHigh(share1, share2));
+            .reduce((share1, share2) -> ShareUtil.pickHigh(share1, share2))
+            .get();
+        System.out.println(highest);
     }
 }
