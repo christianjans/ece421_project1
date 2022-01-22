@@ -1,7 +1,7 @@
 import java.util.function.Predicate;
 
 public class PickShareImperative {
-    final Predicate<ShareInfo> isPriceLessThan500 = ShareUtil.isPriceLessThan(500);
+    static final Predicate<ShareInfo> isPriceLessThan500 = ShareUtil.isPriceLessThan(500);
 
     public static void findHighPriced() {
         ShareInfo highPriced = null;
