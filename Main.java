@@ -6,9 +6,21 @@ public class Main {
             // Run the parallel timing tests.
             System.out.println("Running functional in parallel...");
             parallelTimingTests();
-        } else {
+        } 
+        else if (args.length > 0 && args[0].equals("--allfunctional")) {
+            System.out.println("Running functional sequentially...");
+            sequentialTimingTests();
+
+            System.out.println("Running functional in parallel...");
+            parallelTimingTests();
+        }
+        else if (args.length > 0 && args[0].equals("--imperative")) {
+            System.out.println("Running imperative function...");
+            PickShareImperative.findHighPriced();
+        }
+        else {
             // Run the sequential timing tests.
-            System.out.println("Running functional...");
+            System.out.println("Running functional sequentially...");
             sequentialTimingTests();
         }
     }
