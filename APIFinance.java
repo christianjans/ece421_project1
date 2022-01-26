@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.TimeUnit;
@@ -39,6 +40,6 @@ public class APIFinance {
                 System.out.println("failure sending request.");
             }
         }
-        return price;
+        return price.setScale(2, RoundingMode.HALF_EVEN);
     }
 }
