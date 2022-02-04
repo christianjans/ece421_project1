@@ -1,6 +1,10 @@
+import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
+
+    static final long ONE_MINUTE_NANOSECONDS = TimeUnit.NANOSECONDS.convert(1, TimeUnit.MINUTES);
+
     public static void main(String[] args) {
         if (args.length > 0 && args[0].equals("--parallel")) {
             // Run the parallel timing tests.
@@ -16,7 +20,7 @@ public class Main {
         }
         else if (args.length > 0 && args[0].equals("--imperative")) {
             System.out.println("Running imperative function...");
-            PickShareImperative.findHighPriced();
+            imperativeTimingTests();
         }
         else {
             // Run the sequential timing tests.
@@ -48,6 +52,19 @@ public class Main {
                 "Running sequentially took %d ms.",
                 TimeUnit.NANOSECONDS.toMillis(end - start)
             )
+        );
+    }
+
+    public static void imperativeTimingTests() {
+
+        long start = System.nanoTime();
+        PickShareImperative.findHighPriced();
+        long end = System.nanoTime();
+
+        System.out.printf(
+            "Running the imperative version took %d ms including the API delay and %d ms excluding it.%n",
+            TimeUnit.NANOSECONDS.toMillis(end - start),
+            TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
     }
 }
