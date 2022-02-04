@@ -4,7 +4,6 @@ public class PickShareFunctional {
     private static final int PRICE_LIMIT = 500;
 
     public static void findHighPriced(Stream<String> symbolStream) {
-        // TODO: Also implement functional-style exception handling.
         ShareInfo highest = symbolStream
             .map(symbol -> ShareUtil.getPrice(symbol))
             .filter(ShareUtil.isPriceLessThan(PRICE_LIMIT))
