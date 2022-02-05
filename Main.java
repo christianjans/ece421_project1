@@ -34,11 +34,10 @@ public class Main {
         PickShareFunctional.findHighPriced(Shares.symbols.parallelStream());
         long end = System.nanoTime();
 
-        System.out.println(
-            String.format(
-                "Running in parallel took %d ms.",
-                TimeUnit.NANOSECONDS.toMillis(end - start)
-            )
+        System.out.printf(
+                "Running in parallel took %d ms including the API delay and %d ms excluding it.%n",
+                TimeUnit.NANOSECONDS.toMillis(end - start),
+                TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
     }
 
@@ -47,11 +46,10 @@ public class Main {
         PickShareFunctional.findHighPriced(Shares.symbols.stream());
         long end = System.nanoTime();
 
-        System.out.println(
-            String.format(
-                "Running sequentially took %d ms.",
-                TimeUnit.NANOSECONDS.toMillis(end - start)
-            )
+        System.out.printf(
+                "Running sequentially took %d ms including the API delay and %d ms excluding it.%n",
+                TimeUnit.NANOSECONDS.toMillis(end - start),
+                TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
     }
 
