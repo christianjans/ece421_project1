@@ -38,7 +38,8 @@ public class TestPickShareFunctional {
         //What should print
         //symbol: MSFT price: <CURRENT_PRICE>
         //the correct answer will always be MSFT becuase every other stock is obviously
-        //higher or obviously lower
+        //higher than $500 or obviously lower than MSFT. This way, even with daily price
+        //fluctuations, MSFT will always be the correct answer. 
 
         PickShareFunctional.findHighPriced(symbols.stream());
 
