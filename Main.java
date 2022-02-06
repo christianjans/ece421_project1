@@ -1,4 +1,3 @@
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -10,22 +9,43 @@ public class Main {
             // Run the parallel timing tests.
             System.out.println("Running functional in parallel...");
             parallelTimingTests();
+
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
         } 
-        else if (args.length > 0 && args[0].equals("--allfunctional")) {
+        else if (args.length > 0 && args[0].equals("--all")) {
             System.out.println("Running functional sequentially...");
             sequentialTimingTests();
 
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
+
             System.out.println("Running functional in parallel...");
             parallelTimingTests();
+
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
+
+            System.out.println("Running imperative function...");
+            imperativeTimingTests();
+
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
         }
         else if (args.length > 0 && args[0].equals("--imperative")) {
             System.out.println("Running imperative function...");
             imperativeTimingTests();
+
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
         }
         else {
             // Run the sequential timing tests.
             System.out.println("Running functional sequentially...");
             sequentialTimingTests();
+
+            // Sleep to avoid overlap delay.
+            sleepOneMinute();
         }
     }
 
@@ -35,9 +55,9 @@ public class Main {
         long end = System.nanoTime();
 
         System.out.printf(
-                "Running in parallel took %d ms including the API delay and %d ms excluding it.%n",
-                TimeUnit.NANOSECONDS.toMillis(end - start),
-                TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
+            "Running in parallel took %d ms including the API delay and %d ms excluding it.%n",
+            TimeUnit.NANOSECONDS.toMillis(end - start),
+            TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
     }
 
@@ -47,14 +67,13 @@ public class Main {
         long end = System.nanoTime();
 
         System.out.printf(
-                "Running sequentially took %d ms including the API delay and %d ms excluding it.%n",
-                TimeUnit.NANOSECONDS.toMillis(end - start),
-                TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
+            "Running sequentially took %d ms including the API delay and %d ms excluding it.%n",
+            TimeUnit.NANOSECONDS.toMillis(end - start),
+            TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
     }
 
-    public static void imperativeTimingTests() {
-
+    private static void imperativeTimingTests() {
         long start = System.nanoTime();
         PickShareImperative.findHighPriced();
         long end = System.nanoTime();
@@ -64,5 +83,13 @@ public class Main {
             TimeUnit.NANOSECONDS.toMillis(end - start),
             TimeUnit.NANOSECONDS.toMillis(end - start - ONE_MINUTE_NANOSECONDS)
         );
+    }
+
+    private static void sleepOneMinute() {
+        try {
+            TimeUnit.MINUTES.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
