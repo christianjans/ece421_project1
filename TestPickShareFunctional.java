@@ -42,7 +42,24 @@ public class TestPickShareFunctional {
 
         PickShareFunctional.findHighPriced(symbols.stream());
 
+        //make sure msft is printed
         boolean isFound =  outContent.toString().indexOf("MSFT") !=-1? true: false;
         assertEquals(isFound, true);
+
+        //make sure everything else is not printed
+        isFound =  outContent.toString().indexOf("JMIA") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("CHPT") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("AAL") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("MO") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("GPS") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("GOOG") !=-1? true: false;
+        assertEquals(isFound, false);
+        isFound =  outContent.toString().indexOf("AMZN") !=-1? true: false;
+        assertEquals(isFound, false);
     }
 }
