@@ -16,5 +16,4 @@ public class PickShareImperative {
         }
         System.out.println("High priced under $500 is " + highPriced);
     }
-    
 }
