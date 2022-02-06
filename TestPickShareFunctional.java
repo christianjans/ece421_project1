@@ -36,7 +36,7 @@ public class TestPickShareFunctional {
     @Test
     public void testFunctional() {
         //What should print
-        //symbol: MSFT price: <CURRENT_PRICE>
+        //"symbol: MSFT price: <CURRENT_PRICE>"
         //the correct answer will always be MSFT becuase every other stock is obviously
         //higher than $500 or obviously lower than MSFT. This way, even with daily price
         //fluctuations, MSFT will always be the correct answer. 
