@@ -1,7 +1,8 @@
 JC = javac
+JFILES = APIFinance.java Main.java PickShareFunctional.java PickShareImperative.java ShareInfo.java Shares.java ShareUtil.java
 
 all:
-	$(JC) *.java
+	$(JC) $(JFILES)
 
 # Run the parallel functional benchmarking test.
 run-parallel: all

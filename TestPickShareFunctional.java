@@ -4,10 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 
 public class TestPickShareFunctional {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -77,6 +79,16 @@ public class TestPickShareFunctional {
         //make sure msft is printed
         boolean isFound =  outContent.toString().indexOf("Could not find highest price.") !=-1? true: false;
         assertEquals(isFound, true);
+    }
+
+    @AfterAll
+    public void finish() {
+        // Wait one minute after the tests to refresh the API.
+        try {
+            TimeUnit.MINUTES.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

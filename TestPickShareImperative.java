@@ -2,10 +2,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 
 import static org.junit.Assert.*;
 
@@ -56,4 +58,15 @@ public class TestPickShareImperative {
         // Test that all other symbols are not printed
         shouldNotContainSymbols.forEach((symbol) -> assertFalse(outContent.toString().contains(symbol)));
     }
+
+    @AfterAll
+    public void finish() {
+        // Wait one minute after the tests to refresh the API.
+        try {
+            TimeUnit.MINUTES.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
